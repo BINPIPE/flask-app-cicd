@@ -4,6 +4,8 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building'
+        sh '''docker build -t flaskapp:v1 .
+'''
         sh '''sleep 3
 '''
       }
@@ -20,9 +22,9 @@ pipeline {
             echo 'Integration Testing Complete.'
           }
         }
-        stage('Peformance Testing') {
+        stage('Deployment') {
           steps {
-            sh '''sleep 30 
+            sh '''sleep 10
 '''
             timeout(time: 90) {
               echo 'done.'
@@ -34,6 +36,8 @@ pipeline {
     stage('Deploy') {
       steps {
         echo 'Deploying'
+                    sh '''docker run -d -p 5000:5000 flaskapp:v1
+'''
       }
     }
   }
