@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building'
-        sh '''docker build -t flaskapp:v1 .
+        sh '''cd web ; docker build -t flaskapp:v1 .
 '''
         sh '''sleep 3
 '''
